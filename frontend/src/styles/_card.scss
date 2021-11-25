@@ -1,0 +1,40 @@
+@use 'colors';
+/* Card */
+.card {
+  background-color: colors.$card-background;
+  color: colors.$text;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.card-image-container {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  overflow: hidden;
+  background-color: colors.$pale;
+  width: 29rem;
+  height: 32rem;
+  display: flex;
+}
+.card-body {
+  padding: 1rem;
+
+  > * {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.price {
+  font-size: 2rem;
+}
+
+/* Rating */
+
+.rating span {
+  color: colors.$star;
+  margin: 0.1rem;
+
+  &:last-child {
+    color: colors.$text;
+  }
+}
