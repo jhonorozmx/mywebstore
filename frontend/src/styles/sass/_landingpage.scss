@@ -1,0 +1,56 @@
+@use "vars";
+
+.landingpage-content {
+  width: 100%;
+  max-width: 870px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landingpage-welcome {
+  width: 100%;
+  border-radius: 10px;
+  font-family: vars.$ff-highlight;
+  font-size: vars.$fs-l;
+  background-color: transparent;
+  text-align: center;
+}
+
+.landingpage-image {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  max-width: 400px;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-color: vars.$clr-dark-shades;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.landingpage-description {
+  grid-area: 2/1/3/3;
+  padding: 1.5rem;
+  width: 100%;
+  font-size: vars.$fs-s;
+  text-align: justify;
+}
+
+@media only screen and (max-width: 768px) {
+  .landingpage-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .landingpage-welcome {
+    display: block;
+    text-align: center;
+    font-size: vars.$fs-s;
+  }
+}

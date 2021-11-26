@@ -1,0 +1,24 @@
+// Responsive Typography Sizes
+$fs-xxl: clamp(4rem, 12vw + 1rem, 5.5rem);
+$fs-xl: clamp(3rem, 12vw + 1rem, 4.5rem);
+$fs-l: clamp(2rem, 12vw + 1rem, 3rem);
+$fs-m: clamp(1.25rem, 10vw + 1rem, 2rem);
+$fs-s: clamp(1rem, 10vw + 1rem, 1.5rem);
+$fs-xs: 1rem;
+
+// Color Palette
+$clr-light-shade: #e0e1cf;
+$clr-light-accent: #eeda3b;
+$clr-main: #a3b40e;
+$clr-dark-accent: #ee372f;
+$clr-dark-shades: #0f1231;
+
+// Font family and font sizes
+$ff-highlight: "Merienda One", cursive;
+$ff-document: "Bree Serif", serif;
+
+$fs-xxl: clamp(3rem, 12vw + 1rem, 5.5rem);
+$fs-xl: clamp(2rem, 12vw + 1rem, 4.5rem);
+$fs-l: clamp(2rem, 12vw + 1rem, 3rem);
+$fs-m: clamp(1.25rem, 10vw + 1rem, 2rem);
+$fs-s: clamp(1rem, 10vw + 1rem, 1.5rem);

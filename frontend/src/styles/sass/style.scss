@@ -1,242 +1,158 @@
-@use 'colors';
-@use 'layout';
-@use 'tables';
-@use 'images';
-@use 'card';
+@use "vars";
+@use "mixins";
+@use "tooltip";
+@use "landingpage";
+@use "cards";
+@use "form";
+@use "buttons";
 
-/* Font Stack*/
-%font-stack {
-  font-size: 1.6rem;
-  font-family: Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html {
-  font-size: 62.5%; /*16px x 62.5=10 = 1rem*/
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  @include mixins.customScrollBar;
+}
+
 body {
-  margin: 0;
-  height: 100vh;
-  @extend %font-stack;
+  font-family: vars.$ff-document;
+  background-color: vars.$clr-light-shade;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%230f1231' fill-opacity='0.3'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-#root {
-  height: 100%;
+.gridcontainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "navbar" "main" "footer";
+  min-height: 100vh;
 }
 
-/*Common Classes*/
-h1 {
-  font-size: 1.8rem;
-  padding: 1rem 0;
+nav {
+  grid-area: navbar;
 }
 
-h2 {
-  font-size: 1.6rem;
-  padding: 1rem 0;
+.top-row {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: vars.$clr-main;
 }
 
-a {
-  text-decoration: none;
-  color: colors.$text;
+.logo {
+  max-width: 150px;
+  max-height: 75px;
 
-  &:hover {
-    color: colors.$highlight-color;
-  }
-
-  &.brand {
-    color: colors.$white;
-    font-size: 3rem;
-    font-weight: bold;
-  }
-}
-
-ul {
-  padding: 0 1rem;
-  margin: 0;
-  list-style: none;
-}
-
-li {
-  margin-top: 1rem;
-}
-
-input,
-select,
-textarea,
-button {
-  @extend %font-stack;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 0.1rem colors.$smoke solid;
-
-  &:hover {
-    border: 0.1rem colors.$darkgray solid;
-  }
-}
-
-button {
-  background-color: colors.$lightgray;
-  cursor: pointer;
-
-  &.primary {
-    border: 0.1rem colors.$primary-color;
-    background-color: colors.$main;
-    color: colors.$text;
-    font-weight: 600;
-  }
-
-  &.block {
+  & > img {
     width: 100%;
-  }
+    object-fit: cover;
 
-  &.small {
-    font-size: 1.2rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
-/* Header */
-.row {
+.menu {
+  margin-right: 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+main {
+  grid-area: main;
+}
+
+.mid-row {
+  padding: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   align-items: center;
 
-  &.center {
-    justify-content: center;
+  & > img {
+    max-width: 600px;
+    max-height: 600px;
+    width: 100%;
+    object-fit: contain;
   }
-
-  &.top {
-    align-items: flex-start;
-  }
+}
+.title {
+  align-self: flex-start;
+  margin-left: 1.5rem;
+  font-size: vars.$fs-l;
 }
 
-.badge {
-  background-color: colors.$main;
-  color: colors.$white;
-  border-radius: 50%;
-  padding: 0.2rem 0.7rem;
-  font-size: 1.4rem;
-  margin-left: 0.2rem;
-  position: relative;
-  bottom: 1rem;
-  left: 2rem;
+.store {
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 2rem;
 }
 
-.col-1 {
-  flex: 1 1 25rem;
+.product-container {
+  width: 60%;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  background-color: vars.$clr-light-accent;
+  border-radius: 10px;
 }
 
-.col-2 {
-  flex: 2 1 50rem;
+.side-container {
+  width: 30%;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$clr-light-shade;
+  font-size: vars.$fs-s;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.min-30 {
-  min-width: 30rem;
+.side-container-top {
+  background-color: vars.$clr-main;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* Alerts */
-.loading {
-  display: block !important;
+.side-container-main {
+  padding: 1rem;
 }
 
-// .success {
-//   color: colors.$success-text;
-// }
-
-// .danger {
-//   color: colors.$error-text;
-// }
+.side-container-bottom {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
 
 .alert {
+  position: fixed;
   padding: 1rem;
   border: 0.1rem solid transparent;
   border-radius: 0.5rem;
+  font-size: vars.$fs-s;
   font-weight: bold;
-
-  &-info {
-    background-color: colors.$info-background;
-    color: colors.$info-text;
-
-    a {
-      padding-left: 2rem;
-      color: colors.$text;
-    }
-
-    a:hover {
-      color: colors.$primary-color;
-    }
-  }
-
-  &-error {
-    background-color: colors.$error-background;
-    color: colors.$error-text;
-  }
-
-  &-success {
-    color: colors.$success-text;
-    background-color: colors.$success-background;
-  }
+  color: black;
+  background-color: red;
+  text-align: center;
 }
 
-/*Form*/
-
-.form {
-  max-width: 60rem;
-  margin: 0 auto;
-
-  & > div {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-  }
-
-  & label {
-    margin: 1rem 0;
-  }
-}
-
-input:focus {
-  outline: none;
-}
-
-/*Dropdown*/
-
-.dropdown {
-  display: inline-block;
-  position: relative;
-  padding: 1rem;
-
-  &-content {
-    position: absolute;
-    display: none;
-    right: 0;
-    min-width: 12rem;
-    padding: 1rem;
-    z-index: 1;
-    background-color: colors.$primary-color;
-    margin: 0;
-    margin-top: 0.4rem;
-    border-radius: 0.5rem;
-  }
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/*Checkout Steps*/
-.checkout-steps > div {
-  border-top: 0.3rem colors.$gray solid;
-  color: colors.$gray;
-  flex: 1;
-  padding: 1rem;
-  font-weight: bold;
-}
-
-.checkout-steps > div.active {
-  border-top-color: colors.$highlight-color;
-  color: colors.$highlight-color;
+footer {
+  grid-area: footer;
+  font-size: vars.$fs-s;
+  text-align: center;
 }

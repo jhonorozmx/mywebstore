@@ -1,0 +1,45 @@
+@use "vars";
+
+form {
+  width: 90%;
+  max-width: 500px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: vars.$clr-dark-shades;
+  color: vars.$clr-light-shade;
+  border-radius: 10px;
+
+  & h1 {
+    text-align: center;
+    font-size: vars.$fs-l;
+  }
+
+  & div:last-child {
+    display: flex;
+    height: 100%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
+label {
+  font-size: vars.$fs-m;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: vars.$fs-s;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
