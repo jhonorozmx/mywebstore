@@ -1,12 +1,11 @@
 @use "vars";
 
 .card {
-  width: 20%;
   padding: 1.5rem;
   border-radius: 10px;
   background-color: vars.$clr-dark-accent;
   color: vars.$clr-light-shade;
-  flex: 1 1 200px;
+  flex: 1 1 300px;
 
   &.big {
     width: 50%;
@@ -36,4 +35,8 @@
   & p:nth-child(2) {
     text-align: justify;
   }
+}
+
+.list-item {
+  background-color: cyan;
 }

@@ -7,7 +7,7 @@ import {
 } from "../features/posts/postsSelector";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import PostCard from "../components/ProductCard";
+import ProductCard from "../components/Products/ProductCard";
 
 const StorePage = () => {
   const loading = useSelector(selectPostsLoading);
@@ -18,7 +18,7 @@ const StorePage = () => {
   return (
     <div className="mid-row">
       <h1 className="title">Products</h1>
-      <div className="store">
+      <div className="page-content">
         {loading ? (
           <LoadingBox />
         ) : hasError ? (
@@ -31,28 +31,31 @@ const StorePage = () => {
               </div>
             ) : (
               <>
-                <div className="product-container">
+                <div className="left-col">
                   {posts.map((product) => (
-                    <PostCard key={product.id} productData={product} />
+                    <ProductCard key={product.id} productData={product} />
                   ))}
                 </div>
-                <div className="side-container">
-                  <div className="side-container-top">
-                    <span>View Cart</span>
-                    <span>
-                      <button className="menu-btn">
-                        <i className="fas fa-shopping-cart"></i>
-                      </button>
-                    </span>
-                  </div>
-                  <div className="side-container-main">
-                    <p>{`Subtotal: $ ${999.99}`}</p>
-                    <p>{`Taxes: $ ${99.99}`}</p>
-                    <br />
-                    <p>{`Total: $ ${99999.99}`}</p>
-                  </div>
-                  <div className="side-container-bottom">
-                    <button className="submit-btn">Checkout</button>
+
+                <div className="right-col">
+                  <div className="side-container">
+                    <div className="side-container-top">
+                      <span>View Cart</span>
+                      <span>
+                        <button className="menu-btn">
+                          <i className="fas fa-shopping-cart"></i>
+                        </button>
+                      </span>
+                    </div>
+                    <div className="side-container-main">
+                      <p>{`Subtotal: $ ${999.99}`}</p>
+                      <p>{`Taxes: $ ${99.99}`}</p>
+                      <br />
+                      <p>{`Total: $ ${99999.99}`}</p>
+                    </div>
+                    <div className="side-container-bottom">
+                      <button className="submit-btn">Checkout</button>
+                    </div>
                   </div>
                 </div>
               </>

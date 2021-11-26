@@ -9,7 +9,8 @@ import RegisterPage from "./views/RegisterPage";
 import Dashboard from "./views/Dashboard";
 import StorePage from "./views/StorePage";
 import Inventory from "./views/Inventory";
-import SalesPage from "./views/SalesPage";
+import SalesHistory from "./views/SalesHistory";
+import SaleDetails from "./views/SaleDetails";
 import NotFound from "./views/NotFound";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -62,7 +63,17 @@ function App() {
               path="/sales"
               element={
                 <ProtectedRoute>
-                  <SalesPage />
+                  <SalesHistory />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              exact
+              path="/sales/:id"
+              element={
+                <ProtectedRoute>
+                  <SaleDetails />
                 </ProtectedRoute>
               }
             />
