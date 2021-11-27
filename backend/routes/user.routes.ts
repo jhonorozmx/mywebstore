@@ -51,8 +51,8 @@ export const register = (router: Router) => {
   );
 
   /**
-   * GET /api/users/:id
-   * get user by id
+   * PUT /api/users/:id
+   * update user
    */
   router.put("/api/users/profile", (req: Request, res: Response) =>
     usersProfileController.run(req, res)

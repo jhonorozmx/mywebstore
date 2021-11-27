@@ -66,7 +66,7 @@ export class UserService {
           const user = await User.findById(id);
           return user!;
         } else {
-          throw new Error("Todo not found");
+          throw new Error("User not found");
         }
       } else {
         throw new Error("Invalid Id Object");

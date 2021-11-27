@@ -1,6 +1,8 @@
 import { ProductsGetController } from './productController/ProductsGetController';
 import { ProductsSeedController } from './productController/ProductsSeedController';
 import { ProductsCreateController } from './productController/ProductsCreateController';
+import { ProductsUpdateController } from './productController/ProductsUpdateController';
+import { ProductsDeleteController } from './productController/ProductsDeleteController';
 import { UsersSeedController } from './userController/UsersSeedController';
 import { UsersGetController } from './userController/UsersGetController';
 import { UsersSignInController } from './userController/UsersSignInController';
@@ -13,6 +15,8 @@ import { productService, userService} from '../services';
 export const productsGetController = new ProductsGetController(productService);
 export const productsSeedController = new ProductsSeedController(productService);
 export const productsCreateController = new ProductsCreateController(productService);
+export const productsUpdateController = new ProductsUpdateController(productService);
+export const productsDeleteController = new ProductsDeleteController(productService);
 
 export const usersSeedController = new UsersSeedController(userService);
 export const usersGetController = new UsersGetController(userService);
