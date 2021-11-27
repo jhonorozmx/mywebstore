@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectAuthError,
-  selectAuthLoading,
-} from "../features/authentication/authSelectors";
-import { logIn } from "../features/authentication/authThunks";
+  selectUserError,
+  selectUserLoading,
+} from "../features/users/usersSelector";
+import { signIn } from "../features/users/usersThunk";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
 
@@ -20,16 +20,16 @@ const SigninPage = () => {
 
   // Redux State
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
-  const loading = useSelector(selectAuthLoading);
+  const error = useSelector(selectUserError);
+  const loading = useSelector(selectUserLoading);
   const { hasError, errorMessage } = error;
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(logIn({ user: email, pass: password }))
+    dispatch(signIn({ email: email, password: password }))
       .unwrap()
       .then(() => {
-        navigate("/", { replace: true });
+        navigate("/dashboard", { replace: true });
       })
       .catch(() => {
         return;

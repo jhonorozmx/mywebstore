@@ -16,10 +16,8 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "rootDir": "backend",
-    "baseUrl": ".",
+    "baseUrl": "."
   },
-  "include": [
-    "backend/**/**.ts"
-  ],
+  "include": ["backend/**/**.ts"],
   "exclude": ["node_modules"]
 }

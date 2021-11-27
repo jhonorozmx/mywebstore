@@ -15,7 +15,7 @@ export const register = (router: Router) => {
    * Pupulate user collection
    */
   router.get("/api/users/seed", (req: Request, res: Response) =>
-    usersGetController.run(req, res)
+    usersSeedController.run(req, res)
   );
 
   /**
@@ -23,7 +23,7 @@ export const register = (router: Router) => {
    * Get all user
    */
   router.get("/api/users", (req: Request, res: Response) =>
-    usersSeedController.run(req, res)
+    usersGetController.run(req, res)
   );
 
   /**

@@ -41,11 +41,14 @@ export class UserService {
   async createUser(userInfo: UserCreationAttributes): Promise<UserAttributes> {
     try {
       const user = await User.findOne({ email: userInfo.email });
-      if (user === null) {
-        const createdUser = await User.create(userInfo);
-        createdUser.token = generateToken(createdUser);
-        createdUser.save();
-        return createdUser;
+      if (!user) {
+        const newUser = await User.create({
+          name: userInfo.name,
+          email: userInfo.email,
+          password: bcrypt.hashSync(userInfo.password, 8),
+        });
+        newUser.token = generateToken(newUser);
+        return newUser;
       }
       throw new Error(
         "This email has already been used, try logging into your account or use a different email."
@@ -76,7 +79,12 @@ export class UserService {
     }
   }
 
-  async updateProfile(id: string, name:string, email:string, password:string): Promise<UserAttributes> {
+  async updateProfile(
+    id: string,
+    name: string,
+    email: string,
+    password: string
+  ): Promise<UserAttributes> {
     try {
       console.log(id);
       const valid = Types.ObjectId.isValid(id);
@@ -104,9 +112,9 @@ export class UserService {
     }
   }
 
-  async getUsersAndProducts(id:string): Promise<Array<UserAttributes>> {
+  async getUsersAndProducts(id: string): Promise<Array<UserAttributes>> {
     try {
-      return await User.findById(id).populate('products');
+      return await User.findById(id).populate("products");
     } catch (error) {
       throw new Error("Error getting users");
     }

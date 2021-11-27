@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-//import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
-  selectAuthError,
-  selectAuthLoading,
-} from "../features/authentication/authSelectors";
-//import { logIn } from "../features/authentication/authThunks";
+  selectUserError,
+  selectUserLoading,
+} from "../features/users/usersSelector";
+import { userRegister } from "../features/users/usersThunk";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
 
@@ -18,15 +18,12 @@ const SigninPage = () => {
   const [confirmPass, setConfirmPass] = useState("");
 
   // Routing
-  //const location = useLocation();
-
-  //const navigate = useNavigate();
-  //const from = location.state?.from || "/";
+  const navigate = useNavigate();
 
   // Redux State
-  //const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
-  const loading = useSelector(selectAuthLoading);
+  const dispatch = useDispatch();
+  const error = useSelector(selectUserError);
+  const loading = useSelector(selectUserLoading);
   const { hasError, errorMessage } = error;
 
   const submitHandler = async (e) => {
@@ -35,7 +32,14 @@ const SigninPage = () => {
     if (password !== confirmPass) {
       alert("Passwords do not match!");
     } else {
-      console.log({ name, email });
+      dispatch(userRegister({ name: name, email: email, password: password }))
+        .unwrap()
+        .then(() => {
+          navigate("/dashboard", { replace: true });
+        })
+        .catch(() => {
+          return;
+        });
     }
   };
 

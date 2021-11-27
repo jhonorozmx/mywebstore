@@ -10,6 +10,7 @@ import MessageBox from "../components/MessageBox";
 
 const Inventory = () => {
   const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
   const [toggle, setToggle] = useState(true);
   const [id, setId] = useState("");
@@ -21,12 +22,16 @@ const Inventory = () => {
 
   const toggler = (id) => {
     setToggle(!toggle);
-    console.log(toggle);
     if (toggle) {
       setId(id);
     } else {
       setId("");
     }
+  };
+
+  const addProductHandler = (e) => {
+    e.preventDefault();
+    console.log(name, brand, price);
   };
 
   return (
@@ -100,6 +105,14 @@ const Inventory = () => {
                         required
                         onChange={(e) => setName(e.target.value)}
                       />
+                      <label htmlFor="brand">Brand</label> <br />
+                      <input
+                        type="text"
+                        id="brand"
+                        placeholder={`e.g. "Alpura" `}
+                        required
+                        onChange={(e) => setBrand(e.target.value)}
+                      />
                       <label htmlFor="price">Price</label> <br />
                       <input
                         type="number"
@@ -112,10 +125,7 @@ const Inventory = () => {
                     <div className="side-container-bottom">
                       <button
                         className="submit-btn"
-                        onClick={(e) => {
-                          console.log(name, price);
-                          e.preventDefault();
-                        }}
+                        onClick={addProductHandler}
                       >
                         Save
                       </button>

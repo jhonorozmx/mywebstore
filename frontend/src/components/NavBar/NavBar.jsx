@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectIsAuthenticated } from "../../features/authentication/authSelectors";
-import { logOut } from "../../features/authentication/authThunks";
+import { selectUserInfo } from "../../features/users/usersSelector";
+import { signOut } from "../../features/users/usersThunk";
 import { siteLogo } from "../../assets";
 import MenuItem from "./MenuItem";
 
@@ -12,11 +12,11 @@ const NavBar = () => {
 
   // Redux State
   const dispatch = useDispatch();
-  const authorized = useSelector(selectIsAuthenticated);
+  const userInfo = useSelector(selectUserInfo);
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logOut());
+    dispatch(signOut());
     navigate("/");
   };
 
@@ -34,7 +34,7 @@ const NavBar = () => {
       </div>
 
       <div className="menu">
-        {!authorized ? (
+        {!userInfo ? (
           <>
             <MenuItem
               name="Register"
