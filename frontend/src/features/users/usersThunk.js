@@ -34,7 +34,7 @@ export const userRegister = createAsyncThunk(
       localStorage.setItem("userInfo", JSON.stringify(data));
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue("Email already in use, try signin in instead");
     }
   }
 );
