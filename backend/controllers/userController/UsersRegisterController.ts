@@ -10,10 +10,9 @@ export class UsersRegisterController implements Controller {
     const { name, email, password } = req.body;
     const isAdmin = false;
     const token = "";
-    const creation_date = new Date();
     try {
       const user = await this.service
-        .createUser({ name, email, password, isAdmin, token, creation_date })
+        .createUser({ name, email, password, isAdmin, token })
         .catch((error) => {
           response
             .status(httpStatus.INTERNAL_SERVER_ERROR)

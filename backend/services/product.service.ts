@@ -18,10 +18,23 @@ export class ProductService {
 
   async seedProducts(): Promise<Array<ProductAttributes>> {
     try {
-      const createdProducts = await Product.insertMany(data.products);
-      return createdProducts;
+      const user = await User.findOne({ email: "admin@example.com" });
+      if (user) {
+        data.products.map((p, index) =>{
+          p.owner = user.id;
+        });
+        const createdProducts = await Product.insertMany(data.products);
+        createdProducts.map((p, index) =>{
+          user!.products?.push(p.id);
+        });
+        user!.save();
+        return createdProducts;
+      }
+      throw new Error(
+        "Can seed products first seed the default users first."
+      );
     } catch (error) {
-      throw new Error("Error creating products");
+      throw new Error((error as Error).message);
     }
   }
 
@@ -79,6 +92,7 @@ export class ProductService {
       if (valid) {
         const product = await Product.findByIdAndRemove(id);
         if (product !== null) {
+          await User.updateOne({id: product.owner}, { $pullAll: {products: [id] } } );
           return "Product Deleted";
         } else {
           throw new Error("Product not found");

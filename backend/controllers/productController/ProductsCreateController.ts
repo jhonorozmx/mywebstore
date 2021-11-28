@@ -8,10 +8,9 @@ export class ProductsCreateController implements Controller {
 
   async run(req: Request, response: Response): Promise<void> {
     const { name, price, brand, owner } = req.body;
-    const creation_date = new Date();
     try {
       const user = await this.service
-        .createProduct({ name, price, brand, creation_date, owner })
+        .createProduct({ name, price, brand, owner })
         .catch((error) => {
           response
             .status(httpStatus.INTERNAL_SERVER_ERROR)
