@@ -5,9 +5,9 @@ export interface SaleAttributes {
   itemsPrice: number;
   taxPrice: number;
   totalPrice: number;
-  isPaid: boolean;
+  isPaid?: boolean;
   status: string;
-  creation_date: Date;
+  user:  Types.ObjectId ;
   orderItems: [
     {
       name: string;
@@ -28,12 +28,11 @@ const schema = new Schema<SaleAttributes>({
   totalPrice: { type: Number, required: true },
   isPaid: { type: Boolean, default: false },
   status: { type: String, required: true },
-  creation_date: { type: Date, default: new Date() },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
   orderItems: [
     {
       name: { type: String, required: true },
       qty: { type: Number, required: true },
-      image: { type: String, required: true },
       price: { type: Number, required: true },
       product: {
         type: Schema.Types.ObjectId,
@@ -42,6 +41,9 @@ const schema = new Schema<SaleAttributes>({
       },
     },
   ],
+},
+{
+  timestamps: true,
 });
 
 export const Sale = model<SaleAttributes>("Sale", schema);

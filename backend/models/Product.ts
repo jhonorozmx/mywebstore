@@ -5,7 +5,7 @@ export interface ProductAttributes {
   name: string;
   price: number;
   brand: string;
-  owner: { idUser: Types.ObjectId };
+  owner: Types.ObjectId ;
 }
 
 export interface ProductCreationAttributes extends ProductAttributes {}
