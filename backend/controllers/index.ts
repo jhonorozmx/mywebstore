@@ -3,6 +3,7 @@ import { ProductsSeedController } from './productController/ProductsSeedControll
 import { ProductsCreateController } from './productController/ProductsCreateController';
 import { ProductsUpdateController } from './productController/ProductsUpdateController';
 import { ProductsDeleteController } from './productController/ProductsDeleteController';
+
 import { UsersSeedController } from './userController/UsersSeedController';
 import { UsersGetController } from './userController/UsersGetController';
 import { UsersSignInController } from './userController/UsersSignInController';
@@ -10,7 +11,11 @@ import { UsersRegisterController } from './userController/UsersRegisterControlle
 import { UsersGetByIdController } from './userController/UsersGetByIdController';
 import { UsersProfileController } from './userController/UsersProfileController';
 import { UsersGetWithProducts } from './userController/UsersGetWithProducts';
-import { productService, userService} from '../services'; 
+
+import { SalesCreateController } from './saleController/SalesCreateController';
+import { SalesGetByIdController } from './saleController/SalesGetByIdController';
+import { SalesGetByUserController } from './saleController/SalesGetByUserController';
+import { productService, userService, saleService} from '../services'; 
 
 export const productsGetController = new ProductsGetController(productService);
 export const productsSeedController = new ProductsSeedController(productService);
@@ -25,3 +30,7 @@ export const usersRegisterController = new UsersRegisterController(userService);
 export const usersGetByIdController = new UsersGetByIdController(userService);
 export const usersProfileController = new UsersProfileController(userService);
 export const usersGetWithProducts = new UsersGetWithProducts(userService);
+
+export const salesCreateController = new SalesCreateController(saleService);
+export const salesGetByIdController = new SalesGetByIdController(saleService);
+export const salesGetByUserController = new SalesGetByUserController(saleService);
