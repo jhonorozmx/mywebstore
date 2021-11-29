@@ -92,7 +92,7 @@ export class ProductService {
       if (valid) {
         const product = await Product.findByIdAndRemove(id);
         if (product !== null) {
-          await User.updateOne({id: product.owner}, { $pullAll: {products: [id] } } );
+          await User.updateOne({_id: product.owner}, { $pullAll: {products: [id] } } );
           return "Product Deleted";
         } else {
           throw new Error("Product not found");
