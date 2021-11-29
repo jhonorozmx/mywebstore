@@ -5,18 +5,21 @@ export interface ProductAttributes {
   name: string;
   price: number;
   brand: string;
-  creation_date: Date;
   owner: { idUser: Schema.Types.ObjectId };
 }
 
 export interface ProductCreationAttributes extends ProductAttributes {}
 
-const schema = new Schema<ProductAttributes>({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  brand: { type: String, required: true },
-  creation_date: { type: Date, default: new Date() },
-  owner: { type: Schema.Types.ObjectId, ref: "User" },
-});
+const schema = new Schema<ProductAttributes>(
+  {
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    brand: { type: String, required: true },
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export const Product = model<ProductAttributes>("Product", schema);
