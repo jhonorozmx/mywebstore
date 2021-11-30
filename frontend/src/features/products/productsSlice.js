@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getUserProducts,
-  getProductById,
   createProduct,
   deleteProduct,
   updateProduct,
@@ -44,24 +43,6 @@ export const productsSlice = createSlice({
     },
 
     [getUserProducts.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = {
-        hasError: true,
-        errorMessage: action.payload,
-      };
-    },
-
-    [getProductById.pending]: (state) => {
-      state.error.hasError = false;
-      state.isLoading = true;
-    },
-
-    [getProductById.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.selectedProduct = action.payload;
-    },
-
-    [getProductById.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = {
         hasError: true,
