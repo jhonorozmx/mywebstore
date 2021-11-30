@@ -1,0 +1,78 @@
+@use "vars";
+
+button {
+  border: none;
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: vars.$ff-document;
+  font-size: vars.$fs-s;
+}
+
+.menu-btn {
+  width: clamp(3rem, 10vw + 1rem, 5rem);
+  height: 100%;
+  padding: 0.5rem;
+  font-size: vars.$fs-m;
+  transition: all 250ms;
+
+  &.current {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: vars.$clr-dark-accent;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: vars.$clr-dark-accent;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.nav-btn {
+  color: vars.$clr-dark-shades;
+  &:hover {
+    color: vars.$clr-main;
+  }
+
+  &:disabled {
+    color: vars.$clr-light-accent;
+    cursor: default;
+  }
+}
+
+.card-btn {
+  width: fit-content;
+  align-self: flex-end;
+  color: vars.$clr-dark-shades;
+  font-size: vars.$fs-xs;
+
+  &:hover {
+    text-decoration: underline;
+    color: vars.$clr-light-accent;
+    cursor: pointer;
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.25rem;
+  border: 1px solid vars.$clr-light-accent;
+  background-color: vars.$clr-dark-accent;
+  color: vars.$clr-light-shade;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu-btn {
+    width: 3rem;
+    font-size: vars.$fs-s;
+  }
+}

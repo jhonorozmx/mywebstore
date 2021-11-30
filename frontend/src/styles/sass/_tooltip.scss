@@ -1,0 +1,42 @@
+@use "vars";
+
+.menu-item {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-item .tooltip {
+  visibility: hidden;
+  position: absolute;
+  width: 130px;
+  height: auto;
+  background-color: vars.$clr-dark-shades;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  font-size: vars.$fs-s;
+  padding: 5px;
+  border-radius: 6px;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.3s;
+  top: 125%;
+  left: 45%;
+  margin-left: -60px;
+}
+
+.menu-item .tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+.menu-item:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}

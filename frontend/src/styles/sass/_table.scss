@@ -1,0 +1,27 @@
+@use "vars";
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: vars.$clr-main;
+  font-size: vars.$fs-s;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: vars.$clr-light-shade;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  border: 0.1rem solid vars.$clr-dark-shades;
+  padding: 0.5rem;
+}
+
+.table tbody tr {
+  height: 16px;
+}
+
+.table button {
+  display: inline;
+}
