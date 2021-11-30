@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import {
   productsGetController,
+  productsGetByOwner,
   productsSeedController,
   productsCreateController,
   productsUpdateController,
@@ -22,6 +23,14 @@ export const register = (router: Router) => {
    */
   router.get("/api/products", (req: Request, res: Response) =>
     productsGetController.run(req, res)
+  );
+
+  /**
+   * GET /api/users/:id/products
+   * Products By Owner Id
+   */
+  router.get("/api/users/:userId/products", (req: Request, res: Response) =>
+    productsGetByOwner.run(req, res)
   );
 
   /**
@@ -47,5 +56,4 @@ export const register = (router: Router) => {
   router.delete("/api/products/:id", (req: Request, res: Response) =>
     productsDeleteController.run(req, res)
   );
-  
 };

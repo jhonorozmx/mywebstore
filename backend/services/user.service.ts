@@ -1,7 +1,6 @@
 import { User, UserAttributes, UserCreationAttributes } from "../models/User";
 import data from "../infrastructure/persistence/data";
 import bcrypt from "bcryptjs";
-import { generateToken } from "../helpers/utils";
 import { Types } from "mongoose";
 
 export class UserService {
@@ -27,7 +26,6 @@ export class UserService {
       const user = await User.findOne({ email: email });
       if (user) {
         if (bcrypt.compareSync(password, user.password)) {
-          user.token = generateToken(user);
           user.save();
           return user;
         }
@@ -47,7 +45,6 @@ export class UserService {
           email: userInfo.email,
           password: bcrypt.hashSync(userInfo.password, 8),
         });
-        newUser.token = generateToken(newUser);
         return newUser;
       }
       throw new Error(

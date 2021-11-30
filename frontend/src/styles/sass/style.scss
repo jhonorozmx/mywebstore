@@ -6,6 +6,7 @@
 @use "form";
 @use "buttons";
 @use "table";
+@use "modal";
 
 * {
   margin: 0;
@@ -99,13 +100,16 @@ main {
 }
 
 .left-col {
-  max-width: 750px;
+  min-width: 300px;
   padding: 1.5rem;
   background-color: vars.$clr-light-accent;
   border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+
+  &.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 }
 
 .right-col {

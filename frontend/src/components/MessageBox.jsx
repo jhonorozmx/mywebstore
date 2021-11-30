@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { clearUserError } from "../features/users/usersSlice";
 import { useDispatch } from "react-redux";
 
-function MessageBox({ message }) {
+function MessageBox({ message, action }) {
   const dispatch = useDispatch();
 
   const closeHandler = () => {
-    dispatch(clearUserError());
+    dispatch(action);
   };
 
   return (
@@ -22,6 +21,7 @@ function MessageBox({ message }) {
 
 MessageBox.propTypes = {
   message: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
 };
 
 export default MessageBox;

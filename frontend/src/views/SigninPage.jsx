@@ -7,6 +7,7 @@ import {
   selectUserLoading,
 } from "../features/users/usersSelector";
 import { signIn } from "../features/users/usersThunk";
+import { clearUserError } from "../features/users/usersSlice";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
 
@@ -39,7 +40,9 @@ const SigninPage = () => {
   return (
     <div className="mid-row">
       {loading && <LoadingBox />}
-      {hasError && <MessageBox message={errorMessage} />}
+      {hasError && (
+        <MessageBox message={errorMessage} action={clearUserError()} />
+      )}
       <form className="login-form" onSubmit={submitHandler}>
         <h1>Sign In</h1>
         <div>

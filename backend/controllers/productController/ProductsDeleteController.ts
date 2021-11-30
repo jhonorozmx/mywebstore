@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { Controller } from "../Controller";
-import { ProductService } from "backend/services"; // This should not be here
+import { ProductService } from "backend/services";
 
 export class ProductsDeleteController implements Controller {
   constructor(private service: ProductService) {}

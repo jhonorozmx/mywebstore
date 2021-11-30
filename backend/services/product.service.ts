@@ -16,23 +16,29 @@ export class ProductService {
     }
   }
 
+  async getProductsByOwner(id: string): Promise<Array<ProductAttributes>> {
+    try {
+      return await Product.find({ owner: id });
+    } catch (error) {
+      throw new Error("Error getting this user products");
+    }
+  }
+
   async seedProducts(): Promise<Array<ProductAttributes>> {
     try {
       const user = await User.findOne({ email: "admin@example.com" });
       if (user) {
-        data.products.map((p, index) =>{
+        data.products.map((p, index) => {
           p.owner = user.id;
         });
         const createdProducts = await Product.insertMany(data.products);
-        createdProducts.map((p, index) =>{
+        createdProducts.map((p, index) => {
           user!.products?.push(p.id);
         });
         user!.save();
         return createdProducts;
       }
-      throw new Error(
-        "Can seed products first seed the default users first."
-      );
+      throw new Error("Can seed products first seed the default users first.");
     } catch (error) {
       throw new Error((error as Error).message);
     }
@@ -61,7 +67,6 @@ export class ProductService {
     brand: string
   ): Promise<ProductAttributes> {
     try {
-      console.log(id);
       const valid = Types.ObjectId.isValid(id);
       if (valid) {
         const objId = new Types.ObjectId(id);
@@ -92,7 +97,10 @@ export class ProductService {
       if (valid) {
         const product = await Product.findByIdAndRemove(id);
         if (product !== null) {
-          await User.updateOne({id: product.owner}, { $pullAll: {products: [id] } } );
+          await User.updateOne(
+            { _id: product.owner },
+            { $pullAll: { products: [id] } }
+          );
           return "Product Deleted";
         } else {
           throw new Error("Product not found");

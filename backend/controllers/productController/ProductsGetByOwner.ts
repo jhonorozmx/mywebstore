@@ -3,17 +3,17 @@ import httpStatus from "http-status";
 import { Controller } from "../Controller";
 import { ProductService } from "backend/services";
 
-export class ProductsCreateController implements Controller {
+export class ProductsGetByOwner implements Controller {
   constructor(private service: ProductService) {}
 
   async run(req: Request, response: Response): Promise<void> {
-    const { name, price, brand, owner } = req.body;
+    const { userId } = req.params;
     try {
       const user = await this.service
-        .createProduct({ name, price, brand, owner })
+        .getProductsByOwner(userId)
         .catch((error) => {
           response
-            .status(httpStatus.INTERNAL_SERVER_ERROR)
+            .status(httpStatus.NOT_FOUND)
             .json({ message: error.toString() });
         });
       response.status(httpStatus.OK).json(user);

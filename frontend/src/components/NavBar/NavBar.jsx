@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserInfo } from "../../features/users/usersSelector";
 import { signOut } from "../../features/users/usersThunk";
+import { clearProductList } from "../../features/products/productsSlice";
 import { siteLogo } from "../../assets";
 import MenuItem from "./MenuItem";
 
@@ -16,6 +17,7 @@ const NavBar = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    dispatch(clearProductList());
     dispatch(signOut());
     navigate("/");
   };

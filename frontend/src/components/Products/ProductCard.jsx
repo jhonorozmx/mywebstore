@@ -1,27 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import { useNavigate } from "react-router-dom";
-//import { useSelector, useDispatch } from "react-redux";
-//import { deletePost } from "../features/posts/postsThunk";
-//import { selectIsAuthenticated } from "../features/authentication/authSelectors";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 
 const ProductCard = ({ productData }) => {
-  const { id, title, body } = productData;
-  //const navigate = useNavigate();
+  const { _id, name, brand, price } = productData;
 
   //Redux
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const cartHandler = () => {
-    console.log("Added to cart");
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    dispatch(addToCart(productData));
   };
 
   return (
-    <div key={id} className={`card`}>
+    <div key={_id} className={`card`}>
       <div className={`card-content`}>
-        <p>{`${title.slice(0, 15)}`}</p>
-        <p>{`Price $ ${body.slice(0, 7)}`}</p>
-        <button className="card-btn" onClick={cartHandler}>
+        <p>{`${name}`}</p>
+        <p>{`${brand}`}</p>
+        <p>{`Price $ ${price.toFixed(2)}`}</p>
+        <button className="card-btn" onClick={addToCartHandler}>
           Add to Cart
         </button>
       </div>

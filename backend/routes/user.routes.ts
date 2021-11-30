@@ -6,7 +6,6 @@ import {
   usersRegisterController,
   usersGetByIdController,
   usersProfileController,
-  usersGetWithProducts,
 } from "../controllers"; // This should not be here
 
 export const register = (router: Router) => {
@@ -56,13 +55,5 @@ export const register = (router: Router) => {
    */
   router.put("/api/users/profile", (req: Request, res: Response) =>
     usersProfileController.run(req, res)
-  );
-
-  /**
-   * GET /api/users/:id/products
-   * get user and list of products
-   */
-  router.get("/api/users/:id/products", (req: Request, res: Response) =>
-    usersGetWithProducts.run(req, res)
   );
 };
