@@ -11,7 +11,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
 const SaleDetails = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle] = useState(false);
 
   const { id } = useParams();
 

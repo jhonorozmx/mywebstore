@@ -13,10 +13,14 @@ import MessageBox from "../components/MessageBox";
 import ProductCard from "../components/Products/ProductCard";
 import Modal from "../components/Modal/Modal";
 import Cart from "../components/Modal/Cart";
+import Checkout from "../components/Checkout";
 
 const StorePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
+  const [subtotal, setSubtotal] = useState(0);
+  const [taxes, setTaxes] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
   const loading = useSelector(selectProductsLoading);
@@ -62,6 +66,9 @@ const StorePage = () => {
   const modalHandler = ({ show, type }) => {
     setShowModal(show);
     setModalType(type);
+    setSubtotal(calcSubtotal());
+    setTaxes(calcTaxes());
+    setTotal(calcTotal());
   };
 
   return (
@@ -80,7 +87,9 @@ const StorePage = () => {
               </Modal>
             )}
             {showModal && modalType === "checkout" && (
-              <Modal modalHandler={modalHandler}></Modal>
+              <Modal modalHandler={modalHandler}>
+                <Checkout paymentInfo={{ subtotal, taxes, total }} />
+              </Modal>
             )}
             <div className="left-col cards">
               {allProducts.length === 0 ? (

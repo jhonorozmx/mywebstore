@@ -13,23 +13,6 @@ export const getUserProducts = createAsyncThunk(
   }
 );
 
-export const getProductById = createAsyncThunk(
-  "products/setSelectedProduct",
-  async (id, { getState, rejectWithValue }) => {
-    const {
-      products: { allProducts },
-    } = getState();
-
-    const foundProduct = allProducts.find((product) => product._id === id);
-
-    if (foundProduct) {
-      return foundProduct;
-    } else {
-      return rejectWithValue("Product Does Not Exist");
-    }
-  }
-);
-
 export const createProduct = createAsyncThunk(
   "products/createProduct",
   async ({ pname, pbrand, pprice, userId }, { rejectWithValue }) => {
